@@ -1,5 +1,5 @@
 /* ValuationQuest - modules.css
-   Estilos espec?ficos para os 4 m?dulos, SAELPA e Arena de Negocia??o */
+   Estilos específicos para os 4 módulos, SAELPA e Arena de Negociação */
 
 /* ==================== M?DULO I: DCF 10 PASSOS ==================== */
 .step-wizard-bar {
@@ -434,7 +434,7 @@
   color: #fca5a5 !important;
 }
 
-/* ==================== ARENA DE NEGOCIA??O DE M&A ==================== */
+/* ==================== ARENA DE NEGOCIAÇÃO DE M&A ==================== */
 .negotiation-arena-box {
   display: flex;
   flex-direction: column;

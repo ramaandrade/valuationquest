@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ValuationQuest: A Jornada do Gestor | Simula??o Gamificada de Valuation</title>
-  <meta name="description" content="Plataforma educacional interativa de Valuation Consultivo baseada no Tema 7: FCD, M?ltiplos, EVA, MVA e Caso SAELPA.">
+  <title>ValuationQuest: A Jornada do Gestor | Simulação Gamificada de Valuation</title>
+  <meta name="description" content="Plataforma educacional interativa de Valuation Consultivo baseada no Tema 7: FCD, Múltiplos, EVA, MVA e Caso SAELPA.">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/modules.css">
   <link rel="stylesheet" href="css/report.css">
@@ -14,7 +14,7 @@
 </head>
 <body>
 
-  <!-- ==================== TOP HUD (HEADS-UP DISPLAY) ==================== -->
+  <!-- ==================== TOP HUD ==================== -->
   <header class="game-hud">
     <div class="hud-left">
       <a href="#" class="logo-badge" onclick="switchTab('dashboard')">
@@ -25,9 +25,9 @@
         </div>
       </a>
       <div class="hud-player-profile">
-        <span class="career-avatar" id="hudCareerIcon">??</span>
+        <span class="career-avatar" id="hudCareerIcon">📊</span>
         <div class="career-info">
-          <span class="career-title" id="hudCareerTitle">Analista J?nior de Valuation</span>
+          <span class="career-title" id="hudCareerTitle">Analista Júnior de Valuation</span>
           <div class="xp-bar-container">
             <div class="xp-bar"><div class="xp-fill" id="hudXpFill"></div></div>
             <span class="xp-label" id="hudXpLabel">0 / 250 XP</span>
@@ -52,163 +52,160 @@
     </div>
 
     <div class="hud-right">
-      <button class="btn-icon" id="btnOpenBadges" title="Minhas Conquistas e Medalhas">??</button>
-      <button class="btn-icon" id="btnToggleSound" title="Alternar Efeitos Sonoros">??</button>
-      <button class="btn btn-secondary" onclick="switchTab('laudo')" style="padding: 6px 12px; font-size: 0.8rem;">?? Laudo T?cnico</button>
+      <button class="btn-icon" id="btnOpenBadges" title="Minhas Conquistas e Medalhas">🏆</button>
+      <button class="btn-icon" id="btnToggleSound" title="Alternar Efeitos Sonoros">🔊</button>
+      <button class="btn btn-secondary" onclick="switchTab('laudo')" style="padding: 6px 12px; font-size: 0.8rem;">📜 Laudo Técnico</button>
     </div>
   </header>
 
-  <!-- ==================== NAVEGA??O DE ABAS ==================== -->
+  <!-- ==================== NAVEGAÇÃO DE ABAS ==================== -->
   <nav class="main-nav-tabs">
     <button class="nav-tab-btn active" data-tab="dashboard">
-      <span>??</span> Vis?o Geral
+      <span>🏠</span> Visão Geral
     </button>
     <button class="nav-tab-btn" data-tab="modulo1">
-      <span>??</span> M?dulo I: Detetive FCD <span class="tab-badge" id="badgeM1">10 Passos</span>
+      <span>🔍</span> Módulo I: Detetive FCD <span class="tab-badge" id="badgeM1">10 Passos</span>
     </button>
     <button class="nav-tab-btn" data-tab="modulo2">
-      <span>?</span> M?dulo II: M?ltiplos <span class="tab-badge">M&A Blitz</span>
+      <span>⚡</span> Módulo II: Múltiplos <span class="tab-badge">M&A Blitz</span>
     </button>
     <button class="nav-tab-btn" data-tab="modulo3">
-      <span>???</span> M?dulo III: Infla??o <span class="tab-badge">CEO Crise</span>
+      <span>🛡️</span> Módulo III: Inflação <span class="tab-badge">CEO Crise</span>
     </button>
     <button class="nav-tab-btn" data-tab="modulo4">
-      <span>??</span> M?dulo IV: EVA & MVA <span class="tab-badge">Alavancas</span>
+      <span>💎</span> Módulo IV: EVA & MVA <span class="tab-badge">Alavancas</span>
     </button>
     <button class="nav-tab-btn" data-tab="saelpa">
-      <span>???</span> Caso SAELPA <span class="tab-badge" style="background: #f59e0b; color: #000;">Chefe de Fase</span>
+      <span>🏛️</span> Caso SAELPA <span class="tab-badge" style="background: #f59e0b; color: #000;">Chefe de Fase</span>
     </button>
     <button class="nav-tab-btn" data-tab="negotiation">
-      <span>??</span> Arena de M&A <span class="tab-badge">IA Chat</span>
+      <span>🦈</span> Arena de M&A <span class="tab-badge">IA Chat</span>
     </button>
     <button class="nav-tab-btn" data-tab="laudo">
-      <span>??</span> Laudo de Avalia??o <span class="tab-badge">PDF</span>
+      <span>📜</span> Laudo de Avaliação <span class="tab-badge">PDF</span>
     </button>
   </nav>
 
-  <!-- ==================== CONTE?DO PRINCIPAL ==================== -->
+  <!-- ==================== CONTEÚDO PRINCIPAL ==================== -->
   <main class="main-content">
 
-    <!-- ABA 0: DASHBOARD / VIS?O GERAL -->
+    <!-- ABA 0: DASHBOARD / VISÃO GERAL -->
     <section class="tab-pane active" id="pane-dashboard">
       <div class="card" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.95)); border: 1px solid var(--border-highlight);">
         <div class="card-header">
           <div>
-            <h2 class="card-title">?? Bem-vindo ao ValuationQuest: A Jornada do Gestor</h2>
-            <p class="card-subtitle">Plataforma interativa para dominar a metodologia de valuation consultivo e a gest?o baseada em valor.</p>
+            <h2 class="card-title">📈 Bem-vindo ao ValuationQuest: A Jornada do Gestor</h2>
+            <p class="card-subtitle">Plataforma interativa para dominar a metodologia de valuation consultivo e a gestão baseada em valor.</p>
           </div>
-          <button class="btn btn-primary" onclick="switchTab('modulo1')">Iniciar Miss?o: FCD 10 Passos ?</button>
+          <button class="btn btn-primary" onclick="switchTab('modulo1')">Iniciar Missão: FCD 10 Passos ➔</button>
         </div>
         <p style="color: var(--text-secondary); margin-top: 10px; font-size: 0.95rem;">
-          Valuation n?o ? sobre encontrar um n?mero m?gico isolado em uma planilha est?tica. ? sobre desenhar uma 
-          <strong>Regi?o de Pre?o</strong> fundamentada na din?mica operacional da empresa, no custo de oportunidade de capital 
-          e na capacidade cont?nua de gerar riqueza real (EVA e MVA).
+          Valuation não é sobre encontrar um número mágico isolado em uma planilha estática. É sobre desenhar uma 
+          <strong>Região de Preço</strong> fundamentada na dinâmica operacional da empresa, no custo de oportunidade de capital 
+          e na capacidade contínua de gerar riqueza real (EVA e MVA).
         </p>
       </div>
 
       <div class="grid-4">
         <div class="card" onclick="switchTab('modulo1')" style="cursor: pointer;">
-          <div style="font-size: 32px; margin-bottom: 8px;">??</div>
+          <div style="font-size: 32px; margin-bottom: 8px;">🔍</div>
           <h3 style="font-size: 1.05rem; font-weight: 700;">1. O Detetive do FCD</h3>
           <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 6px 0 12px 0;">
-            Avalie uma concess?o de energia em 10 passos rigorosos com proje??es, CAPM, WACC e sensibilidade.
+            Avalie uma concessão de energia em 10 passos rigorosos com projeções, CAPM, WACC e sensibilidade.
           </p>
-          <span style="font-size: 0.78rem; color: var(--color-primary); font-weight: 700;">Entrar no FCD ?</span>
+          <span style="font-size: 0.78rem; color: var(--color-primary); font-weight: 700;">Entrar no FCD ➔</span>
         </div>
 
         <div class="card" onclick="switchTab('modulo2')" style="cursor: pointer;">
-          <div style="font-size: 32px; margin-bottom: 8px;">?</div>
-          <h3 style="font-size: 1.05rem; font-weight: 700;">2. Jogo dos M?ltiplos</h3>
+          <div style="font-size: 32px; margin-bottom: 8px;">⚡</div>
+          <h3 style="font-size: 1.05rem; font-weight: 700;">2. Jogo dos Múltiplos</h3>
           <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 6px 0 12px 0;">
-            M&A Blitz: associe EV/EBITDA, P/L e EV/Receita aos perfis adequados de empresas em rodadas r?pidas.
+            M&A Blitz: associe EV/EBITDA, P/L e EV/Receita aos perfis adequados de empresas em rodadas rápidas.
           </p>
-          <span style="font-size: 0.78rem; color: var(--color-primary); font-weight: 700;">Jogar M?ltiplos ?</span>
+          <span style="font-size: 0.78rem; color: var(--color-primary); font-weight: 700;">Jogar Múltiplos ➔</span>
         </div>
 
         <div class="card" onclick="switchTab('modulo3')" style="cursor: pointer;">
-          <div style="font-size: 32px; margin-bottom: 8px;">???</div>
-          <h3 style="font-size: 1.05rem; font-weight: 700;">3. Crise Inflacion?ria</h3>
+          <div style="font-size: 32px; margin-bottom: 8px;">🛡️</div>
+          <h3 style="font-size: 1.05rem; font-weight: 700;">3. Crise Inflacionária</h3>
           <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 6px 0 12px 0;">
-            Sobreviva como CEO ? alta de custos, escalada do WACC e ? distor??o tribut?ria da deprecia??o hist?rica.
+            Sobreviva como CEO à alta de custos, escalada do WACC e à distorção tributária da depreciação histórica.
           </p>
-          <span style="font-size: 0.78rem; color: var(--color-primary); font-weight: 700;">Enfrentar Crise ?</span>
+          <span style="font-size: 0.78rem; color: var(--color-primary); font-weight: 700;">Enfrentar Crise ➔</span>
         </div>
 
         <div class="card" onclick="switchTab('saelpa')" style="cursor: pointer; border-color: rgba(245, 158, 11, 0.4);">
-          <div style="font-size: 32px; margin-bottom: 8px;">???</div>
+          <div style="font-size: 32px; margin-bottom: 8px;">🏛️</div>
           <h3 style="font-size: 1.05rem; font-weight: 700; color: #fcd34d;">Caso Real SAELPA</h3>
           <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 6px 0 12px 0;">
-            Chefe de Fase: Par?metros reais ANEEL, desvende o mist?rio de 2004 e execute a virada hist?rica de 2005.
+            Chefe de Fase: Parâmetros reais ANEEL, desvende o mistério de 2004 e execute a virada histórica de 2005.
           </p>
-          <span style="font-size: 0.78rem; color: #f59e0b; font-weight: 700;">Desafiar SAELPA ?</span>
+          <span style="font-size: 0.78rem; color: #f59e0b; font-weight: 700;">Desafiar SAELPA ➔</span>
         </div>
       </div>
 
       <div class="card">
-        <h3 class="card-title">?? Trilha de Carreira e Badges de Honra</h3>
-        <p class="card-subtitle">Complete desafios t?cnicos para subir de cargo e conquistar medalhas corporativas.</p>
+        <h3 class="card-title">🏆 Trilha de Carreira e Badges de Honra</h3>
+        <p class="card-subtitle">Complete desafios técnicos para subir de cargo e conquistar medalhas corporativas.</p>
         <div class="grid-3" id="dashboardBadgesGrid" style="margin-top: 16px;"></div>
       </div>
     </section>
 
-    <!-- ABA 1: M?DULO I - O DETETIVE DO FCD (10 PASSOS) -->
+    <!-- ABA 1: MÓDULO I - DETETIVE DO FCD -->
     <section class="tab-pane" id="pane-modulo1">
       <div class="card">
         <div class="card-header">
           <div>
-            <h2 class="card-title">?? M?dulo I ? O Detetive do Fluxo de Caixa (DCF / FCD)</h2>
-            <p class="card-subtitle">Empresa Alvo: <strong>Transmiss?o & Energia Alfa S.A.</strong> (Concess?o de infraestrutura el?trica)</p>
+            <h2 class="card-title">🔍 Módulo I — O Detetive do Fluxo de Caixa (DCF / FCD)</h2>
+            <p class="card-subtitle">Empresa Alvo: <strong>Transmissão & Energia Alfa S.A.</strong> (Concessão de infraestrutura elétrica)</p>
           </div>
-          <button class="btn btn-success" id="btnDcfRecalc">?? Recalcular Modelo</button>
+          <button class="btn btn-success" id="btnDcfRecalc">🔄 Recalcular Modelo</button>
         </div>
 
-        <!-- Barra de Passos do Wizard -->
         <div class="step-wizard-bar" id="dcfStepsWizard"></div>
-
-        <!-- Container Din?mico do Passo Atual -->
         <div id="dcfStepContainer"></div>
       </div>
     </section>
 
-    <!-- ABA 2: M?DULO II - O JOGO DOS M?LTIPLOS (M&A BLITZ) -->
+    <!-- ABA 2: MÓDULO II - JOGO DOS MÚLTIPLOS -->
     <section class="tab-pane" id="pane-modulo2">
       <div class="card">
         <div class="card-header">
           <div>
-            <h2 class="card-title">? M?dulo II ? O Jogo dos M?ltiplos (Avalia??o Relativa)</h2>
+            <h2 class="card-title">⚡ Módulo II — O Jogo dos Múltiplos (Avaliação Relativa)</h2>
             <p class="card-subtitle">M&A Blitz: Associe o indicador correto (EV/EBITDA, P/L, EV/Receita) ao perfil de cada companhia.</p>
           </div>
-          <div class="blitz-timer" id="blitzScoreBoard">Pontua??o: 0 pts</div>
+          <div class="blitz-timer" id="blitzScoreBoard">Pontuação: 0 pts</div>
         </div>
 
         <div id="blitzGameContainer"></div>
       </div>
     </section>
 
-    <!-- ABA 3: M?DULO III - CRISE INFLACION?RIA -->
+    <!-- ABA 3: MÓDULO III - CRISE INFLACIONÁRIA -->
     <section class="tab-pane" id="pane-modulo3">
       <div class="card">
         <div class="card-header">
           <div>
-            <h2 class="card-title">??? M?dulo III ? O Desafio de Gest?o na Crise Econ?mica</h2>
-            <p class="card-subtitle">A Amea?a da Infla??o: Proteja as margens, o FCF e o valuation da escalada do WACC.</p>
+            <h2 class="card-title">🛡️ Módulo III — O Desafio de Gestão na Crise Econômica</h2>
+            <p class="card-subtitle">A Ameaça da Inflação: Proteja as margens, o FCF e o valuation da escalada do WACC.</p>
           </div>
-          <button class="btn btn-secondary" id="btnResetInflation">Reiniciar Simula??o</button>
+          <button class="btn btn-secondary" id="btnResetInflation">Reiniciar Simulação</button>
         </div>
 
         <div id="inflationSimContainer"></div>
       </div>
     </section>
 
-    <!-- ABA 4: M?DULO IV - EVA E MVA -->
+    <!-- ABA 4: MÓDULO IV - EVA E MVA -->
     <section class="tab-pane" id="pane-modulo4">
       <div class="card">
         <div class="card-header">
           <div>
-            <h2 class="card-title">?? M?dulo IV ? Gest?o de Valor Baseada em EVA e MVA</h2>
+            <h2 class="card-title">💎 Módulo IV — Gestão de Valor Baseada em EVA e MVA</h2>
             <p class="card-subtitle">Alavancas Fundamentais: Aumentar Lucros Operacionais, Otimizar Capital e Projetos de Alto Retorno.</p>
           </div>
-          <button class="btn btn-primary" id="btnApplyEvaPlan">Executar Or?amento Anual ?</button>
+          <button class="btn btn-primary" id="btnApplyEvaPlan">Executar Orçamento Anual ➔</button>
         </div>
 
         <div id="evaMvaContainer"></div>
@@ -220,8 +217,8 @@
       <div class="card">
         <div class="card-header">
           <div>
-            <h2 class="card-title" style="color: #fcd34d;">??? Chefe de Fase: O Caso Real SAELPA (2003?2005)</h2>
-            <p class="card-subtitle">Sociedade An?nima de Eletrifica??o da Para?ba (Estudo de Caso Hist?rico ANEEL)</p>
+            <h2 class="card-title" style="color: #fcd34d;">🏛️ Chefe de Fase: O Caso Real SAELPA (2003–2005)</h2>
+            <p class="card-subtitle">Sociedade Anônima de Eletrificação da Paraíba (Estudo de Caso Histórico ANEEL)</p>
           </div>
           <span class="badge" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid #f59e0b; padding: 6px 12px; border-radius: 6px; font-weight: 700;">CAPM: Ke = 16,22%</span>
         </div>
@@ -230,17 +227,17 @@
       </div>
     </section>
 
-    <!-- ABA 6: ARENA DE NEGOCIA??O DE M&A -->
+    <!-- ABA 6: ARENA DE NEGOCIAÇÃO DE M&A -->
     <section class="tab-pane" id="pane-negotiation">
       <div class="card">
         <div class="card-header">
           <div>
-            <h2 class="card-title">?? Arena de Negocia??o de M&A (IA Conversacional)</h2>
-            <p class="card-subtitle">Defenda sua Regi?o de Pre?o e valuation intr?nseco contra investidores exigentes.</p>
+            <h2 class="card-title">🦈 Arena de Negociação de M&A (IA Conversacional)</h2>
+            <p class="card-subtitle">Defenda sua Região de Preço e valuation intrínseco contra investidores exigentes.</p>
           </div>
           <div style="display: flex; gap: 8px;">
             <button class="btn btn-secondary" id="btnSelectAlbrecht">Dr. Albrecht (PE)</button>
-            <button class="btn btn-secondary" id="btnSelectSalles">Beatriz Salles (Estrat?gico)</button>
+            <button class="btn btn-secondary" id="btnSelectSalles">Beatriz Salles (Estratégico)</button>
           </div>
         </div>
 
@@ -248,15 +245,15 @@
       </div>
     </section>
 
-    <!-- ABA 7: LAUDO DE AVALIA??O (PDF) -->
+    <!-- ABA 7: LAUDO DE AVALIAÇÃO (PDF) -->
     <section class="tab-pane" id="pane-laudo">
       <div class="card no-print" style="margin-bottom: 20px;">
         <div class="card-header">
           <div>
-            <h2 class="card-title">?? Gerador de Laudos de Avalia??o & Information Memorandum</h2>
-            <p class="card-subtitle">Documento formal padronizado para entrega t?cnica de valuation e certifica??o.</p>
+            <h2 class="card-title">📜 Gerador de Laudos de Avaliação & Information Memorandum</h2>
+            <p class="card-subtitle">Documento formal padronizado para entrega técnica de valuation e certificação.</p>
           </div>
-          <button class="btn btn-primary" onclick="window.print()">??? Imprimir ou Baixar em PDF</button>
+          <button class="btn btn-primary" onclick="window.print()">🖨️ Imprimir ou Baixar em PDF</button>
         </div>
       </div>
 
@@ -269,22 +266,21 @@
   <div class="modal-overlay" id="badgesModal">
     <div class="modal-card">
       <button class="modal-close-btn" id="btnCloseBadges">&times;</button>
-      <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 8px;">?? Minhas Conquistas Corporativas</h2>
-      <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 20px;">Cada conquista comprova o dom?nio pr?tico de um pilar de valuation e finan?as corporativas.</p>
+      <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 8px;">🏆 Minhas Conquistas Corporativas</h2>
+      <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 20px;">Cada conquista comprova o domínio prático de um pilar de valuation e finanças corporativas.</p>
       <div class="grid-2" id="modalBadgesList"></div>
     </div>
   </div>
 
-  <!-- TOAST DE NOTIFICA??O -->
+  <!-- TOAST DE NOTIFICAÇÃO -->
   <div class="toast-notification" id="gameToast">
-    <span style="font-size: 24px;" id="toastIcon">?</span>
+    <span style="font-size: 24px;" id="toastIcon">✨</span>
     <div>
       <div style="font-size: 0.88rem; font-weight: 700;" id="toastTitle">Conquista Desbloqueada!</div>
       <div style="font-size: 0.78rem; color: var(--text-secondary);" id="toastMessage">+100 XP adicionados.</div>
     </div>
   </div>
 
-  <!-- SCRIPTS DOS MOTORES E APLICA??O -->
   <script src="js/state.js"></script>
   <script src="js/soundFx.js"></script>
   <script src="js/engines/dcfEngine.js"></script>

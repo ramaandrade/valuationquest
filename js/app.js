@@ -1,5 +1,5 @@
 // ValuationQuest - app.js
-// Orquestrador Central da Interface, Estados, Eventos e Gr?ficos
+// Orquestrador Central da Interface, Estados, Eventos e Gráficos
 
 document.addEventListener('DOMContentLoaded', () => {
   initTabs();
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateDcfCalculations();
 });
 
-/* ==================== 1. SISTEMA DE NAVEGA??O ==================== */
+/* ==================== 1. SISTEMA DE NAVEGAÇÃO ==================== */
 function switchTab(tabId) {
   const tabs = document.querySelectorAll('.nav-tab-btn');
   const panes = document.querySelectorAll('.tab-pane');
@@ -67,7 +67,7 @@ function initHud() {
     const progress = Math.min(100, Math.max(0, ((state.xp - minXp) / (maxXp - minXp)) * 100));
 
     if (xpFill) xpFill.style.width = progress + '%';
-    if (xpLabel) xpLabel.textContent = `${state.xp} / ${maxXp} XP (N?vel ${state.level})`;
+    if (xpLabel) xpLabel.textContent = `${state.xp} / ${maxXp} XP (Nível ${state.level})`;
 
     const mvaEl = document.getElementById('hudMvaVal');
     const evaEl = document.getElementById('hudEvaVal');
@@ -95,13 +95,13 @@ function initHud() {
     btnSound.addEventListener('click', () => {
       const enabled = gameState.toggleSound();
       sounds.muted = !enabled;
-      btnSound.textContent = enabled ? '??' : '??';
+      btnSound.textContent = enabled ? '🔊' : '🔇';
       btnSound.title = enabled ? 'Som Ativado' : 'Som Mudo';
     });
   }
 }
 
-function showToast(title, msg, icon = '?') {
+function showToast(title, msg, icon = '✨') {
   const toast = document.getElementById('gameToast');
   const tIcon = document.getElementById('toastIcon');
   const tTitle = document.getElementById('toastTitle');
@@ -116,7 +116,7 @@ function showToast(title, msg, icon = '?') {
   }
 }
 
-/* ==================== 2. M?DULO I: DETETIVE DO FCD ==================== */
+/* ==================== 2. MÓDULO I: DETETIVE DO FCD ==================== */
 let currentDcfStep = 1;
 let dcfParams = {
   growthRate: 0.07,
@@ -137,16 +137,16 @@ let latestDcfResult = null;
 let latestSensitivity = null;
 
 const DCF_STEP_NAMES = [
-  '1. Diagn?stico Inicial',
-  '2. Premissas & Cen?rios',
-  '3. Proje??es FCFF',
+  '1. Diagnóstico Inicial',
+  '2. Premissas & Cenários',
+  '3. Projeções FCFF',
   '4. Valor Terminal (VT)',
   '5. WACC & CAPM',
   '6. Enterprise Value',
-  '7. D?vida L?quida',
+  '7. Dívida Líquida',
   '8. Shareholder Value',
-  '9. Sensibilidade & Pre?o',
-  '10. Apresenta??o & Laudo'
+  '9. Sensibilidade & Preço',
+  '10. Apresentação & Laudo'
 ];
 
 function initDcfModule() {
@@ -165,7 +165,7 @@ function initDcfModule() {
     btnRecalc.addEventListener('click', () => {
       updateDcfCalculations();
       sounds.success();
-      showToast('Modelo FCD Atualizado', 'Todas as proje??es e regi?o de pre?o recalculadas.', '??');
+      showToast('Modelo FCD Atualizado', 'Todas as projeções e região de preço recalculadas.', '🔄');
     });
   }
 
@@ -204,7 +204,7 @@ function setDcfScenario(scenarioKey) {
   dcfParams.terminalGrowth = sc.terminalGrowth;
   updateDcfCalculations();
   sounds.click();
-  showToast(`Cen?rio ${sc.name} Aplicado`, sc.description, '??');
+  showToast(`Cenário ${sc.name} Aplicado`, sc.description, '⚙️');
 }
 
 function renderDcfCurrentStep() {
@@ -218,28 +218,28 @@ function renderDcfCurrentStep() {
     html = `
       <div class="card-header">
         <div>
-          <h3 class="card-title">Passo 1: Diagn?stico do Hist?rico Financeiro</h3>
-          <p class="card-subtitle">Examine os demonstrativos hist?ricos (3 ?ltimos exerc?cios) para calibrar suas expectativas.</p>
+          <h3 class="card-title">Passo 1: Diagnóstico do Histórico Financeiro</h3>
+          <p class="card-subtitle">Examine os demonstrativos históricos (3 últimos exercícios) para calibrar suas expectativas.</p>
         </div>
-        <button class="btn btn-primary" onclick="goToDcfStep(2)">Avan?ar: Premissas ?</button>
+        <button class="btn btn-primary" onclick="goToDcfStep(2)">Avançar: Premissas ➔</button>
       </div>
       <table class="financial-table">
         <thead>
           <tr>
-            <th>Demonstra??o do Resultado (em R$ mil)</th>
+            <th>Demonstração do Resultado (em R$ mil)</th>
             <th>Ano t-2</th><th>Ano t-1</th><th>Ano t0 (Base)</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>Receita Operacional L?quida</td><td>R$ 100.000</td><td>R$ 108.000</td><td><strong>R$ 116.640</strong></td></tr>
+          <tr><td>Receita Operacional Líquida</td><td>R$ 100.000</td><td>R$ 108.000</td><td><strong>R$ 116.640</strong></td></tr>
           <tr><td>Custos e Despesas Operacionais</td><td>R$ 55.000</td><td>R$ 59.400</td><td>R$ 64.152</td></tr>
           <tr style="background: rgba(56, 189, 248, 0.08);"><td><strong>EBITDA</strong></td><td>R$ 45.000 (45%)</td><td>R$ 48.600 (45%)</td><td><strong>R$ 52.488 (45%)</strong></td></tr>
-          <tr><td>Deprecia??o e Amortiza??o</td><td>R$ 10.000</td><td>R$ 10.500</td><td>R$ 11.000</td></tr>
+          <tr><td>Depreciação e Amortização</td><td>R$ 10.000</td><td>R$ 10.500</td><td>R$ 11.000</td></tr>
           <tr><td>EBIT (Lucro Operacional)</td><td>R$ 35.000</td><td>R$ 38.100</td><td>R$ 41.488</td></tr>
           <tr><td>Imposto de Renda & CSLL (34%)</td><td>R$ 11.900</td><td>R$ 12.954</td><td>R$ 14.106</td></tr>
           <tr style="background: rgba(16, 185, 129, 0.08);"><td><strong>NOPAT</strong></td><td>R$ 23.100</td><td>R$ 25.146</td><td><strong>R$ 27.382</strong></td></tr>
           <tr><td>Investimentos em Ativo Fixo (CapEx)</td><td>R$ 12.000</td><td>R$ 12.500</td><td>R$ 13.000</td></tr>
-          <tr><td>Varia??o do Capital de Giro (? NCG)</td><td>R$ 3.000</td><td>R$ 3.200</td><td>R$ 3.500</td></tr>
+          <tr><td>Variação do Capital de Giro (Δ NCG)</td><td>R$ 3.000</td><td>R$ 3.200</td><td>R$ 3.500</td></tr>
           <tr style="background: rgba(168, 85, 247, 0.12); font-weight: bold;">
             <td>FLUXO DE CAIXA LIVRE DA FIRMA (FCFF)</td>
             <td>R$ 18.100</td><td>R$ 19.946</td><td style="color: var(--color-primary);">R$ 21.882</td>
@@ -251,23 +251,23 @@ function renderDcfCurrentStep() {
     html = `
       <div class="card-header">
         <div>
-          <h3 class="card-title">Passo 2: Determina??o de Premissas Operacionais</h3>
-          <p class="card-subtitle">Ajuste as taxas de crescimento e margens ou selecione um cen?rio macroecon?mico.</p>
+          <h3 class="card-title">Passo 2: Determinação de Premissas Operacionais</h3>
+          <p class="card-subtitle">Ajuste as taxas de crescimento e margens ou selecione um cenário macroeconômico.</p>
         </div>
-        <button class="btn btn-primary" onclick="goToDcfStep(3)">Avan?ar: Proje??es ?</button>
+        <button class="btn btn-primary" onclick="goToDcfStep(3)">Avançar: Projeções ➔</button>
       </div>
 
       <div class="scenario-buttons">
         <button class="btn-scenario" onclick="setDcfScenario('pessimistic')">
-          <div style="color: #f87171; font-weight: 700;">?? Cen?rio Pessimista</div>
+          <div style="color: #f87171; font-weight: 700;">🔻 Cenário Pessimista</div>
           <small style="color: var(--text-muted);">Cresc. 3.5% | Margem 38% | WACC +1.5%</small>
         </button>
         <button class="btn-scenario active" onclick="setDcfScenario('base')">
-          <div style="color: #38bdf8; font-weight: 700;">?? Cen?rio Base (Esperado)</div>
+          <div style="color: #38bdf8; font-weight: 700;">⚖️ Cenário Base (Esperado)</div>
           <small style="color: var(--text-muted);">Cresc. 7.0% | Margem 45% | WACC Neutro</small>
         </button>
         <button class="btn-scenario" onclick="setDcfScenario('optimistic')">
-          <div style="color: #4ade80; font-weight: 700;">?? Cen?rio Otimista</div>
+          <div style="color: #4ade80; font-weight: 700;">🔺 Cenário Otimista</div>
           <small style="color: var(--text-muted);">Cresc. 11.0% | Margem 50% | WACC -1.5%</small>
         </button>
       </div>
@@ -293,7 +293,7 @@ function renderDcfCurrentStep() {
 
         <div class="slider-group">
           <div class="slider-header">
-            <span>Crescimento na Perpetuidade (g perp?tuo):</span>
+            <span>Crescimento na Perpetuidade (g perpétuo):</span>
             <strong id="dispTerminalG">${(dcfParams.terminalGrowth * 100).toFixed(1)}%</strong>
           </div>
           <input type="range" class="slider-input" min="0.01" max="0.05" step="0.005" value="${dcfParams.terminalGrowth}"
@@ -302,7 +302,7 @@ function renderDcfCurrentStep() {
 
         <div class="slider-group">
           <div class="slider-header">
-            <span>Beta da Concession?ria (?):</span>
+            <span>Beta da Concessionária (β):</span>
             <strong id="dispBeta">${dcfParams.beta.toFixed(2)}</strong>
           </div>
           <input type="range" class="slider-input" min="0.3" max="1.5" step="0.05" value="${dcfParams.beta}"
@@ -314,10 +314,10 @@ function renderDcfCurrentStep() {
     html = `
       <div class="card-header">
         <div>
-          <h3 class="card-title">Passo 3: Proje??o dos Fluxos de Caixa Livres (5 Anos)</h3>
-          <p class="card-subtitle">Fluxo operacional descontado ? taxa de custo de capital (WACC: ${(d.wacc * 100).toFixed(2)}%).</p>
+          <h3 class="card-title">Passo 3: Projeção dos Fluxos de Caixa Livres (5 Anos)</h3>
+          <p class="card-subtitle">Fluxo operacional descontado à taxa de custo de capital (WACC: ${(d.wacc * 100).toFixed(2)}%).</p>
         </div>
-        <button class="btn btn-primary" onclick="goToDcfStep(4)">Avan?ar: Valor Terminal ?</button>
+        <button class="btn btn-primary" onclick="goToDcfStep(4)">Avançar: Valor Terminal ➔</button>
       </div>
       <div style="margin-bottom: 16px;">
         <canvas id="dcfProjCanvas" style="width: 100%; height: 240px;"></canvas>
@@ -325,7 +325,7 @@ function renderDcfCurrentStep() {
       <table class="financial-table">
         <thead>
           <tr>
-            <th>Ano</th><th>Receita</th><th>EBITDA</th><th>NOPAT</th><th>CapEx</th><th>? NCG</th><th>FCFF (Livre)</th><th>Fator DF</th><th>Valor Presente</th>
+            <th>Ano</th><th>Receita</th><th>EBITDA</th><th>NOPAT</th><th>CapEx</th><th>Δ NCG</th><th>FCFF (Livre)</th><th>Fator DF</th><th>Valor Presente</th>
           </tr>
         </thead>
         <tbody>
@@ -343,7 +343,7 @@ function renderDcfCurrentStep() {
             </tr>
           `).join('')}
           <tr style="background: rgba(255, 255, 255, 0.05); font-weight: bold;">
-            <td colspan="8">Soma dos Valores Presentes dos Fluxos Expl?citos:</td>
+            <td colspan="8">Soma dos Valores Presentes dos Fluxos Explícitos:</td>
             <td style="color: var(--color-success); font-size: 1.05rem;">R$ ${d.sumPvExplicit.toLocaleString('pt-BR')}</td>
           </tr>
         </tbody>
@@ -353,23 +353,23 @@ function renderDcfCurrentStep() {
     html = `
       <div class="card-header">
         <div>
-          <h3 class="card-title">Passo 4: C?lculo do Valor Terminal (Perpetuidade)</h3>
-          <p class="card-subtitle">Estimando o valor cont?nuo da firma al?m do horizonte expl?cito de 5 anos.</p>
+          <h3 class="card-title">Passo 4: Cálculo do Valor Terminal (Perpetuidade)</h3>
+          <p class="card-subtitle">Estimando o valor contínuo da firma além do horizonte explícito de 5 anos.</p>
         </div>
-        <button class="btn btn-primary" onclick="goToDcfStep(5)">Avan?ar: WACC & CAPM ?</button>
+        <button class="btn btn-primary" onclick="goToDcfStep(5)">Avançar: WACC & CAPM ➔</button>
       </div>
       <div class="card" style="background: rgba(0,0,0,0.3); border-color: var(--color-primary);">
-        <h4 style="color: var(--color-primary); margin-bottom: 10px;">F?rmula de Gordon-Shapiro:</h4>
+        <h4 style="color: var(--color-primary); margin-bottom: 10px;">Fórmula de Gordon-Shapiro:</h4>
         <p style="font-family: monospace; font-size: 1.1rem; margin-bottom: 12px;">VT = FCFF(n+1) / (WACC - g)</p>
         <div style="font-size: 0.95rem; line-height: 1.8;">
-          <div>? FCFF Ano 5: <strong>R$ ${d.projections[4].fcf.toLocaleString('pt-BR')}</strong></div>
-          <div>? FCFF Ano 6 projetado [FCF ? (1 + ${(d.terminalGrowth*100).toFixed(1)}%)]: <strong>R$ ${d.fcfNext.toLocaleString('pt-BR')}</strong></div>
-          <div>? Denominador [${(d.wacc*100).toFixed(2)}% - ${(d.terminalGrowth*100).toFixed(1)}%]: <strong>${((d.wacc - d.terminalGrowth)*100).toFixed(2)}%</strong></div>
+          <div>• FCFF Ano 5: <strong>R$ ${d.projections[4].fcf.toLocaleString('pt-BR')}</strong></div>
+          <div>• FCFF Ano 6 projetado [FCF × (1 + ${(d.terminalGrowth*100).toFixed(1)}%)]: <strong>R$ ${d.fcfNext.toLocaleString('pt-BR')}</strong></div>
+          <div>• Denominador [${(d.wacc*100).toFixed(2)}% - ${(d.terminalGrowth*100).toFixed(1)}%]: <strong>${((d.wacc - d.terminalGrowth)*100).toFixed(2)}%</strong></div>
           <div style="margin-top: 10px; font-size: 1.15rem; color: #38bdf8;">
-            ? Valor Terminal Perp?tuo (VT): <strong>R$ ${d.terminalValue.toLocaleString('pt-BR')}</strong>
+            ➔ Valor Terminal Perpétuo (VT): <strong>R$ ${d.terminalValue.toLocaleString('pt-BR')}</strong>
           </div>
           <div style="font-size: 1.15rem; color: #10b981; margin-top: 6px;">
-            ? Valor Presente do VT (t=0): <strong>R$ ${d.pvTerminalValue.toLocaleString('pt-BR')}</strong>
+            ➔ Valor Presente do VT (t=0): <strong>R$ ${d.pvTerminalValue.toLocaleString('pt-BR')}</strong>
             <small style="color: var(--text-secondary);">(Representa ${d.terminalValueWeight}% do valor total da firma)</small>
           </div>
         </div>
@@ -379,32 +379,32 @@ function renderDcfCurrentStep() {
     html = `
       <div class="card-header">
         <div>
-          <h3 class="card-title">Passo 5: Estrutura de Capital & Custo M?dio Ponderado (WACC)</h3>
-          <p class="card-subtitle">Pondera??o do Custo de Capital Pr?prio (Ke via CAPM) e Custo da D?vida p?s-impostos.</p>
+          <h3 class="card-title">Passo 5: Estrutura de Capital & Custo Médio Ponderado (WACC)</h3>
+          <p class="card-subtitle">Ponderação do Custo de Capital Próprio (Ke via CAPM) e Custo da Dívida pós-impostos.</p>
         </div>
-        <button class="btn btn-primary" onclick="goToDcfStep(6)">Avan?ar: Enterprise Value ?</button>
+        <button class="btn btn-primary" onclick="goToDcfStep(6)">Avançar: Enterprise Value ➔</button>
       </div>
       <div class="grid-2">
         <div class="card" style="background: rgba(0,0,0,0.25);">
           <h4 style="color: #38bdf8; margin-bottom: 8px;">CAPM (Capital Asset Pricing Model)</h4>
-          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px;">Ke = Krf + ? ? (Km - Krf) + Pr?mio de Risco Pa?s</p>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px;">Ke = Krf + β × (Km - Krf) + Prêmio de Risco País</p>
           <div style="font-size: 0.9rem; line-height: 1.8;">
-            <div>? Taxa Livre de Risco (Krf): ${(dcfParams.krf * 100).toFixed(2)}%</div>
-            <div>? Pr?mio de Mercado (Km - Krf): ${((dcfParams.km - dcfParams.krf) * 100).toFixed(2)}%</div>
-            <div>? Beta da Concession?ria (?): ${dcfParams.beta.toFixed(2)}</div>
-            <div>? Risco Pa?s Brasil (rr): ${(dcfParams.countryRisk * 100).toFixed(2)}%</div>
+            <div>• Taxa Livre de Risco (Krf): ${(dcfParams.krf * 100).toFixed(2)}%</div>
+            <div>• Prêmio de Mercado (Km - Krf): ${((dcfParams.km - dcfParams.krf) * 100).toFixed(2)}%</div>
+            <div>• Beta da Concessionária (β): ${dcfParams.beta.toFixed(2)}</div>
+            <div>• Risco País Brasil (rr): ${(dcfParams.countryRisk * 100).toFixed(2)}%</div>
             <div style="font-size: 1.05rem; font-weight: 700; color: #34d399; margin-top: 8px;">
-              = Custo de Capital Pr?prio (Ke): ${(d.ke * 100).toFixed(2)}%
+              = Custo de Capital Próprio (Ke): ${(d.ke * 100).toFixed(2)}%
             </div>
           </div>
         </div>
         <div class="card" style="background: rgba(0,0,0,0.25);">
           <h4 style="color: #818cf8; margin-bottom: 8px;">WACC Consolidado</h4>
-          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px;">WACC = Ke ? (E/V) + Kd ? (1 - T) ? (D/V)</p>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px;">WACC = Ke × (E/V) + Kd × (1 - T) × (D/V)</p>
           <div style="font-size: 0.9rem; line-height: 1.8;">
-            <div>? Participa??o Capital Pr?prio (E/V): ${(dcfParams.equityWeight * 100).toFixed(0)}%</div>
-            <div>? Participa??o D?vida (D/V): ${(dcfParams.debtWeight * 100).toFixed(0)}%</div>
-            <div>? Custo da D?vida L?quido de IR [9.5% ? (1 - 34%)]: 6.27%</div>
+            <div>• Participação Capital Próprio (E/V): ${(dcfParams.equityWeight * 100).toFixed(0)}%</div>
+            <div>• Participação Dívida (D/V): ${(dcfParams.debtWeight * 100).toFixed(0)}%</div>
+            <div>• Custo da Dívida Líquido de IR [9.5% × (1 - 34%)]: 6.27%</div>
             <div style="font-size: 1.15rem; font-weight: 800; color: #38bdf8; margin-top: 8px;">
               = Taxa de Desconto WACC: ${(d.wacc * 100).toFixed(2)}%
             </div>
@@ -416,14 +416,14 @@ function renderDcfCurrentStep() {
     html = `
       <div class="card-header">
         <div>
-          <h3 class="card-title">Passo 6: C?lculo do Enterprise Value (Valor da Firma)</h3>
+          <h3 class="card-title">Passo 6: Cálculo do Enterprise Value (Valor da Firma)</h3>
           <p class="card-subtitle">Soma do valor presente dos fluxos operacionais com o valor terminal.</p>
         </div>
-        <button class="btn btn-primary" onclick="goToDcfStep(7)">Avan?ar: D?vida L?quida ?</button>
+        <button class="btn btn-primary" onclick="goToDcfStep(7)">Avançar: Dívida Líquida ➔</button>
       </div>
       <div class="grid-3" style="margin-bottom: 20px;">
         <div class="metric-pill">
-          <span class="lbl">VP dos Fluxos Expl?citos</span>
+          <span class="lbl">VP dos Fluxos Explícitos</span>
           <span class="val neutral">R$ ${d.sumPvExplicit.toLocaleString('pt-BR')}</span>
         </div>
         <div class="metric-pill">
@@ -440,31 +440,31 @@ function renderDcfCurrentStep() {
     html = `
       <div class="card-header">
         <div>
-          <h3 class="card-title">Passo 7: Apura??o da D?vida L?quida no Balan?o</h3>
-          <p class="card-subtitle">D?vida L?quida = Financiamentos e Empr?stimos Brutos - Disponibilidades de Caixa.</p>
+          <h3 class="card-title">Passo 7: Apuração da Dívida Líquida no Balanço</h3>
+          <p class="card-subtitle">Dívida Líquida = Financiamentos e Empréstimos Brutos - Disponibilidades de Caixa.</p>
         </div>
-        <button class="btn btn-primary" onclick="goToDcfStep(8)">Avan?ar: Shareholder Value ?</button>
+        <button class="btn btn-primary" onclick="goToDcfStep(8)">Avançar: Shareholder Value ➔</button>
       </div>
       <div class="grid-2">
         <div class="card" style="background: rgba(0,0,0,0.25);">
-          <h4 style="color: #f87171; margin-bottom: 12px;">Passivos Onerosos (D?vida Bruta)</h4>
+          <h4 style="color: #f87171; margin-bottom: 12px;">Passivos Onerosos (Dívida Bruta)</h4>
           <div style="font-size: 0.9rem; line-height: 2;">
-            <div>? Empr?stimos de Curto Prazo: R$ 12.000 mil</div>
-            <div>? Deb?ntures de Longo Prazo: R$ 33.000 mil</div>
-            <div style="font-weight: 700; color: #f87171;">= Total D?vida Bruta: R$ ${d.totalDebt.toLocaleString('pt-BR')} mil</div>
+            <div>• Empréstimos de Curto Prazo: R$ 12.000 mil</div>
+            <div>• Debêntures de Longo Prazo: R$ 33.000 mil</div>
+            <div style="font-weight: 700; color: #f87171;">= Total Dívida Bruta: R$ ${d.totalDebt.toLocaleString('pt-BR')} mil</div>
           </div>
         </div>
         <div class="card" style="background: rgba(0,0,0,0.25);">
           <h4 style="color: #34d399; margin-bottom: 12px;">Ativos de Liquidez (Caixa)</h4>
           <div style="font-size: 0.9rem; line-height: 2;">
-            <div>? Caixa e Bancos: R$ 5.000 mil</div>
-            <div>? Aplica??es Financeiras: R$ 10.000 mil</div>
-            <div style="font-weight: 700; color: #34d399;">= Total de Caixa Dispon?vel: R$ ${d.cash.toLocaleString('pt-BR')} mil</div>
+            <div>• Caixa e Bancos: R$ 5.000 mil</div>
+            <div>• Aplicações Financeiras: R$ 10.000 mil</div>
+            <div style="font-weight: 700; color: #34d399;">= Total de Caixa Disponível: R$ ${d.cash.toLocaleString('pt-BR')} mil</div>
           </div>
         </div>
       </div>
       <div class="price-range-box" style="margin-top: 16px;">
-        <strong>D?vida L?quida:</strong>
+        <strong>Dívida Líquida:</strong>
         <span class="range-highlight" style="color: #f87171;">
           R$ ${d.totalDebt.toLocaleString('pt-BR')} - R$ ${d.cash.toLocaleString('pt-BR')} = R$ ${d.netDebt.toLocaleString('pt-BR')} mil
         </span>
@@ -474,10 +474,10 @@ function renderDcfCurrentStep() {
     html = `
       <div class="card-header">
         <div>
-          <h3 class="card-title">Passo 8: C?lculo do Shareholder Value (Equity Value)</h3>
-          <p class="card-subtitle">O valor econ?mico que de fato pertence aos acionistas ap?s honrar as d?vidas l?quidas.</p>
+          <h3 class="card-title">Passo 8: Cálculo do Shareholder Value (Equity Value)</h3>
+          <p class="card-subtitle">O valor econômico que de fato pertence aos acionistas após honrar as dívidas líquidas.</p>
         </div>
-        <button class="btn btn-primary" onclick="goToDcfStep(9)">Avan?ar: Regi?o de Pre?o ?</button>
+        <button class="btn btn-primary" onclick="goToDcfStep(9)">Avançar: Região de Preço ➔</button>
       </div>
       <div class="grid-3">
         <div class="metric-pill">
@@ -485,7 +485,7 @@ function renderDcfCurrentStep() {
           <span class="val neutral">R$ ${d.enterpriseValue.toLocaleString('pt-BR')}</span>
         </div>
         <div class="metric-pill">
-          <span class="lbl">(-) D?vida L?quida</span>
+          <span class="lbl">(-) Dívida Líquida</span>
           <span class="val negative">R$ ${d.netDebt.toLocaleString('pt-BR')}</span>
         </div>
         <div class="metric-pill" style="border-color: var(--color-success);">
@@ -494,10 +494,10 @@ function renderDcfCurrentStep() {
         </div>
       </div>
       <div class="card" style="margin-top: 16px; background: rgba(0,0,0,0.25);">
-        <h4>Pre?o Justo por A??o:</h4>
+        <h4>Preço Justo por Ação:</h4>
         <div style="font-size: 2rem; font-weight: 800; color: #a855f7; margin-top: 8px;">
           R$ ${d.sharePrice.toFixed(2)}
-          <span style="font-size: 0.9rem; color: var(--text-secondary); font-weight: normal;">(Base: 10.000.000 a??es)</span>
+          <span style="font-size: 0.9rem; color: var(--text-secondary); font-weight: normal;">(Base: 10.000.000 ações)</span>
         </div>
       </div>
     `;
@@ -505,17 +505,17 @@ function renderDcfCurrentStep() {
     html = `
       <div class="card-header">
         <div>
-          <h3 class="card-title">Passo 9: An?lise de Sensibilidade & Regi?o de Pre?o</h3>
-          <p class="card-subtitle">Valuation n?o ? um n?mero ?nico: veja como o valor se comporta variando WACC e taxa g.</p>
+          <h3 class="card-title">Passo 9: Análise de Sensibilidade & Região de Preço</h3>
+          <p class="card-subtitle">Valuation não é um número único: veja como o valor se comporta variando WACC e taxa g.</p>
         </div>
-        <button class="btn btn-primary" onclick="goToDcfStep(10)">Concluir Miss?o ?</button>
+        <button class="btn btn-primary" onclick="goToDcfStep(10)">Concluir Missão ➔</button>
       </div>
       <div class="football-field-container">
-        <h4 style="margin-bottom: 8px; color: #e2e8f0;">Gr?fico Football Field ? Regi?o de Pre?o para M&A</h4>
+        <h4 style="margin-bottom: 8px; color: #e2e8f0;">Gráfico Football Field — Região de Preço para M&A</h4>
         <canvas id="footballCanvas" style="width: 100%; height: 280px;"></canvas>
       </div>
       <div style="margin-top: 20px;">
-        <h4 style="margin-bottom: 8px;">Matriz 5x5 de Sensibilidade (WACC ? g perp?tuo)</h4>
+        <h4 style="margin-bottom: 8px;">Matriz 5x5 de Sensibilidade (WACC × g perpétuo)</h4>
         <div style="overflow-x: auto;">
           <table class="financial-table">
             <thead>
@@ -543,22 +543,22 @@ function renderDcfCurrentStep() {
   } else if (currentDcfStep === 10) {
     html = `
       <div class="card" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(56, 189, 248, 0.1)); border-color: var(--color-success); text-align: center; padding: 32px;">
-        <div style="font-size: 48px; margin-bottom: 12px;">??</div>
+        <div style="font-size: 48px; margin-bottom: 12px;">🏆</div>
         <h2 style="font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: 8px;">Medalha Conquistada: Detetive do Fluxo de Caixa!</h2>
         <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 20px auto;">
-          Seu laudo t?cnico de avalia??o foi homologado. Voc? j? pode emitir o documento oficial em PDF 
-          ou levar sua regi?o de pre?o para testar suas habilidades na <strong>Arena de Negocia??o de M&A</strong>!
+          Seu laudo técnico de avaliação foi homologado. Você já pode emitir o documento oficial em PDF 
+          ou levar sua região de preço para testar suas habilidades na <strong>Arena de Negociação de M&A</strong>!
         </p>
         <div style="display: flex; gap: 12px; justify-content: center;">
-          <button class="btn btn-primary" onclick="switchTab('laudo')">?? Visualizar & Imprimir Laudo em PDF</button>
-          <button class="btn btn-success" onclick="switchTab('negotiation')">?? Defender Pre?o na Arena de M&A ?</button>
+          <button class="btn btn-primary" onclick="switchTab('laudo')">📜 Visualizar & Imprimir Laudo em PDF</button>
+          <button class="btn btn-success" onclick="switchTab('negotiation')">🦈 Defender Preço na Arena de M&A ➔</button>
         </div>
       </div>
     `;
     const b = gameState.unlockBadge('detetive_fcd');
     if (b) {
       sounds.levelUp();
-      showToast('Nova Conquista!', 'Medalha Detetive do FCD desbloqueada (+300 XP)', '??');
+      showToast('Nova Conquista!', 'Medalha Detetive do FCD desbloqueada (+300 XP)', '🔍');
     }
   }
 
@@ -574,7 +574,7 @@ function renderDcfStepCharts() {
   }
 }
 
-/* ==================== 3. M?DULO II: JOGO DOS M?LTIPLOS ==================== */
+/* ==================== 3. MÓDULO II: JOGO DOS MÚLTIPLOS ==================== */
 let blitzCurrentIndex = 0;
 let blitzScore = 0;
 
@@ -588,28 +588,28 @@ function renderBlitzRound() {
   if (!container) return;
 
   if (scoreBoard) {
-    scoreBoard.textContent = `Pontua??o: ${blitzScore} pts (${blitzCurrentIndex}/${BLITZ_COMPANIES.length})`;
+    scoreBoard.textContent = `Pontuação: ${blitzScore} pts (${blitzCurrentIndex}/${BLITZ_COMPANIES.length})`;
   }
 
   if (blitzCurrentIndex >= BLITZ_COMPANIES.length) {
     container.innerHTML = `
       <div class="card" style="text-align: center; padding: 36px; border-color: var(--color-success); background: rgba(16, 185, 129, 0.1);">
-        <div style="font-size: 48px; margin-bottom: 12px;">?</div>
-        <h2 style="font-size: 1.6rem; font-weight: 800; color: #fff;">Parab?ns! M&A Blitz Conclu?da!</h2>
+        <div style="font-size: 48px; margin-bottom: 12px;">⚡</div>
+        <h2 style="font-size: 1.6rem; font-weight: 800; color: #fff;">Parabéns! M&A Blitz Concluída!</h2>
         <p style="color: var(--text-secondary); margin: 10px 0 20px 0;">
-          Voc? demonstrou discernimento profissional para selecionar m?ltiplos relativos adequados ao est?gio operacional de cada neg?cio.
+          Você demonstrou discernimento profissional para selecionar múltiplos relativos adequados ao estágio operacional de cada negócio.
         </p>
         <p style="font-size: 1.25rem; font-weight: 800; color: var(--color-primary); margin-bottom: 20px;">
-          Pontua??o Final: ${blitzScore} pontos
+          Pontuação Final: ${blitzScore} pontos
         </p>
-        <button class="btn btn-primary" onclick="restartBlitz()">Jogar Novamente ??</button>
+        <button class="btn btn-primary" onclick="restartBlitz()">Jogar Novamente 🔄</button>
       </div>
     `;
 
     const b = gameState.unlockBadge('mestre_multiplos');
     if (b) {
       sounds.levelUp();
-      showToast('Medalha Conquistada!', 'Mestre dos M?ltiplos (+300 XP)', '?');
+      showToast('Medalha Conquistada!', 'Mestre dos Múltiplos (+300 XP)', '⚡');
     }
     return;
   }
@@ -633,7 +633,7 @@ function renderBlitzRound() {
 
       <div class="financials-strip">
         <div class="financial-stat-item">
-          <span class="lbl">Receita L?quida</span>
+          <span class="lbl">Receita Líquida</span>
           <span class="val">R$ ${(company.financials.revenue / 1000000).toFixed(1)}M</span>
         </div>
         <div class="financial-stat-item">
@@ -643,19 +643,19 @@ function renderBlitzRound() {
           </span>
         </div>
         <div class="financial-stat-item">
-          <span class="lbl">Lucro L?quido</span>
+          <span class="lbl">Lucro Líquido</span>
           <span class="val" style="color: ${company.financials.netIncome >= 0 ? '#10b981' : '#f87171'};">
             R$ ${(company.financials.netIncome / 1000000).toFixed(1)}M
           </span>
         </div>
         <div class="financial-stat-item">
-          <span class="lbl">D?vida L?quida</span>
+          <span class="lbl">Dívida Líquida</span>
           <span class="val">R$ ${(company.financials.netDebt / 1000000).toFixed(1)}M</span>
         </div>
       </div>
 
       <h4 style="font-size: 1rem; color: #e2e8f0; margin-top: 20px;">
-        Qual m?ltiplo de avalia??o voc? deve recomendar para esta transa??o?
+        Qual múltiplo de avaliação você deve recomendar para esta transação?
       </h4>
 
       <div class="multiples-options-grid">
@@ -691,23 +691,23 @@ function submitMultipleChoice(selectedKey) {
 
     fbArea.innerHTML = `
       <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid var(--color-success); border-radius: var(--radius-md); padding: 16px;">
-        <h4 style="color: #6ee7b7; font-weight: 700; margin-bottom: 6px;">?? Resposta Correta! (+150 pts)</h4>
+        <h4 style="color: #6ee7b7; font-weight: 700; margin-bottom: 6px;">🎯 Resposta Correta! (+150 pts)</h4>
         <p style="font-size: 0.88rem; color: #e2e8f0; margin-bottom: 10px;">${company.explanation}</p>
         <div style="font-size: 0.85rem; color: var(--color-primary);">
-          Valuation Impl?cito: <strong>R$ ${(valResult.impliedEnterpriseValue / 1000000).toFixed(1)}M</strong> 
+          Valuation Implícito: <strong>R$ ${(valResult.impliedEnterpriseValue / 1000000).toFixed(1)}M</strong> 
           (base: ${valResult.multipleValue}x ${valResult.multiple}).
         </div>
-        <button class="btn btn-success" style="margin-top: 14px;" onclick="nextBlitzCompany()">Pr?xima Empresa ?</button>
+        <button class="btn btn-success" style="margin-top: 14px;" onclick="nextBlitzCompany()">Próxima Empresa ➔</button>
       </div>
     `;
   } else {
     sounds.error();
     const distractor = company.distractors.find(d => d.multiple === selectedKey);
-    const whyWrong = distractor ? distractor.whyWrong : 'Este m?ltiplo n?o ? adequado para a maturidade financeira desta empresa.';
+    const whyWrong = distractor ? distractor.whyWrong : 'Este múltiplo não é adequado para a maturidade financeira desta empresa.';
 
     fbArea.innerHTML = `
       <div style="background: rgba(239, 68, 68, 0.15); border: 1px solid var(--color-danger); border-radius: var(--radius-md); padding: 16px;">
-        <h4 style="color: #fca5a5; font-weight: 700; margin-bottom: 6px;">? Escolha Inadequada!</h4>
+        <h4 style="color: #fca5a5; font-weight: 700; margin-bottom: 6px;">❌ Escolha Inadequada!</h4>
         <p style="font-size: 0.88rem; color: #e2e8f0; margin-bottom: 10px;">${whyWrong}</p>
         <button class="btn btn-secondary" style="margin-top: 14px;" onclick="renderBlitzRound()">Tentar Novamente</button>
       </div>
@@ -726,7 +726,7 @@ function restartBlitz() {
   renderBlitzRound();
 }
 
-/* ==================== 4. M?DULO III: CRISE INFLACION?RIA ==================== */
+/* ==================== 4. MÓDULO III: CRISE INFLACIONÁRIA ==================== */
 let inflationCurrentRound = 0;
 let currentCompanyInflationState = {
   revenue: 200000,
@@ -766,20 +766,20 @@ function renderInflationSim() {
   if (inflationCurrentRound >= INFLATION_ROUNDS.length) {
     container.innerHTML = `
       <div class="card" style="text-align: center; padding: 36px; border-color: var(--color-success); background: rgba(16, 185, 129, 0.1);">
-        <div style="font-size: 48px; margin-bottom: 12px;">???</div>
-        <h2 style="font-size: 1.6rem; font-weight: 800; color: #fff;">Miss?o Cumprida: Voc? Sobreviveu ? Crise!</h2>
+        <div style="font-size: 48px; margin-bottom: 12px;">🛡️</div>
+        <h2 style="font-size: 1.6rem; font-weight: 800; color: #fff;">Missão Cumprida: Você Sobreviveu à Crise!</h2>
         <p style="color: var(--text-secondary); margin: 12px 0 20px 0; max-width: 600px; margin-left: auto; margin-right: auto;">
-          Voc? aplicou com rigor a Regra de Ouro: em ambientes inflacion?rios, proteger o valuation exige fazer 
-          o fluxo de caixa crescer acima do aumento do WACC e combater a corros?o tribut?ria da deprecia??o hist?rica.
+          Você aplicou com rigor a Regra de Ouro: em ambientes inflacionários, proteger o valuation exige fazer 
+          o fluxo de caixa crescer acima do aumento do WACC e combater a corrosão tributária da depreciação histórica.
         </p>
-        <button class="btn btn-primary" onclick="initInflationModule()">Reiniciar Simula??o</button>
+        <button class="btn btn-primary" onclick="initInflationModule()">Reiniciar Simulação</button>
       </div>
     `;
 
     const b = gameState.unlockBadge('sobrevivente_inflacao');
     if (b) {
       sounds.levelUp();
-      showToast('Medalha Conquistada!', 'Sobrevivente da Infla??o (+300 XP)', '???');
+      showToast('Medalha Conquistada!', 'Sobrevivente da Inflação (+300 XP)', '🛡️');
     }
     return;
   }
@@ -789,9 +789,9 @@ function renderInflationSim() {
   container.innerHTML = `
     <div class="inflation-shock-banner">
       <div style="display: flex; justify-content: space-between; align-items: center;">
-        <h3 style="font-size: 1.25rem; font-weight: 800; color: #f87171;">?? ${round.name}</h3>
+        <h3 style="font-size: 1.25rem; font-weight: 800; color: #f87171;">⚠️ ${round.name}</h3>
         <span style="background: rgba(239, 68, 68, 0.3); color: #fca5a5; padding: 4px 10px; border-radius: 4px; font-weight: 700; font-size: 0.85rem;">
-          Infla??o: ${(round.inflationRate * 100).toFixed(1)}% a.a. | WACC: +${(round.waccImpact * 100).toFixed(1)} p.p.
+          Inflação: ${(round.inflationRate * 100).toFixed(1)}% a.a. | WACC: +${(round.waccImpact * 100).toFixed(1)} p.p.
         </span>
       </div>
       <p style="font-size: 0.92rem; color: #f1f5f9; margin-top: 10px; line-height: 1.5;">${round.narrative}</p>
@@ -811,22 +811,22 @@ function renderInflationSim() {
         <span class="val positive">R$ ${(currentCompanyInflationState.fcf).toLocaleString('pt-BR')}k</span>
       </div>
       <div class="metric-pill">
-        <span class="lbl">Deprecia??o Fixa (N?o Indexada)</span>
+        <span class="lbl">Depreciação Fixa (Não Indexada)</span>
         <span class="val" style="color: #cbd5e1;">R$ 15.000k</span>
       </div>
     </div>
 
-    <h4 style="font-size: 1.05rem; color: #e2e8f0; margin-bottom: 12px;">Como CEO, qual ? a sua estrat?gia corporativa de repasse e custos?</h4>
+    <h4 style="font-size: 1.05rem; color: #e2e8f0; margin-bottom: 12px;">Como CEO, qual é a sua estratégia corporativa de repasse e custos?</h4>
 
     <div class="strategy-selection-list">
       ${PASSTHROUGH_STRATEGIES.map((strat, idx) => `
         <div class="strategy-radio-card" onclick="executeInflationStrategy('${strat.id}')">
-          <div style="font-size: 24px;">${idx === 3 ? '??' : (idx === 2 ? '???' : (idx === 1 ? '??' : '??'))}</div>
+          <div style="font-size: 24px;">${idx === 3 ? '💡' : (idx === 2 ? '🏷️' : (idx === 1 ? '⚖️' : '🛑'))}</div>
           <div style="flex: 1;">
             <div style="font-weight: 700; font-size: 0.95rem; color: var(--color-primary);">${strat.name}</div>
             <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 4px;">${strat.description}</p>
           </div>
-          <button class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.8rem;">Adotar Estrat?gia ?</button>
+          <button class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.8rem;">Adotar Estratégia ➔</button>
         </div>
       `).join('')}
     </div>
@@ -856,7 +856,7 @@ function executeInflationStrategy(strategyId) {
 
   if (result.survivesGoldenRule) {
     sounds.success();
-    gameState.addXp(120, 'Sobreviveu ? Rodada de Infla??o');
+    gameState.addXp(120, 'Sobreviveu à Rodada de Inflação');
   } else {
     sounds.error();
   }
@@ -865,31 +865,31 @@ function executeInflationStrategy(strategyId) {
     <div class="card" style="margin-top: 20px; background: rgba(0,0,0,0.3); border-color: ${result.survivesGoldenRule ? 'var(--color-success)' : 'var(--color-danger)'};">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
         <h4 style="font-size: 1.1rem; color: ${result.survivesGoldenRule ? '#34d399' : '#f87171'}; font-weight: 800;">
-          ${result.survivesGoldenRule ? '? Regra de Ouro Cumprida!' : '?? Destrui??o de Valor em Andamento!'}
+          ${result.survivesGoldenRule ? '✅ Regra de Ouro Cumprida!' : '⚠️ Destruição de Valor em Andamento!'}
         </h4>
-        <span style="font-size: 0.85rem; color: var(--text-secondary);">Estrat?gia: ${strat.name}</span>
+        <span style="font-size: 0.85rem; color: var(--text-secondary);">Estratégia: ${strat.name}</span>
       </div>
 
       <div class="grid-4" style="margin: 12px 0;">
-        <div>? Nova Receita: <strong>R$ ${result.revenue.toLocaleString('pt-BR')}k</strong></div>
-        <div>? Margem EBITDA: <strong>${result.ebitdaMargin}%</strong></div>
-        <div>? Carga Tribut?ria Real: <strong style="color: #fca5a5;">${result.effectiveTaxRateReal}%</strong></div>
-        <div>? FCF Nominal Gerado: <strong style="color: #38bdf8;">R$ ${result.fcf.toLocaleString('pt-BR')}k</strong></div>
+        <div>• Nova Receita: <strong>R$ ${result.revenue.toLocaleString('pt-BR')}k</strong></div>
+        <div>• Margem EBITDA: <strong>${result.ebitdaMargin}%</strong></div>
+        <div>• Carga Tributária Real: <strong style="color: #fca5a5;">${result.effectiveTaxRateReal}%</strong></div>
+        <div>• FCF Nominal Gerado: <strong style="color: #38bdf8;">R$ ${result.fcf.toLocaleString('pt-BR')}k</strong></div>
       </div>
 
       <div class="golden-rule-box ${result.survivesGoldenRule ? '' : 'danger'}">
-        <div style="font-size: 24px;">${result.survivesGoldenRule ? '??' : '??'}</div>
+        <div style="font-size: 24px;">${result.survivesGoldenRule ? '📈' : '📉'}</div>
         <div style="font-size: 0.88rem;">
           <strong>Teste da Regra de Ouro:</strong> Crescimento do FCF (${result.fcfGrowth}%) vs Aumento do WACC (+${result.waccDelta}%).
           ${result.survivesGoldenRule ? 
             'Seu fluxo de caixa superou o aumento da taxa de desconto, preservando o valor real da firma!' : 
-            'O aumento da taxa de desconto foi superior ? expans?o de caixa, deprimindo o valor presente da empresa.'
+            'O aumento da taxa de desconto foi superior à expansão de caixa, deprimindo o valor presente da empresa.'
           }
         </div>
       </div>
 
       <div style="margin-top: 16px; text-align: right;">
-        <button class="btn btn-primary" onclick="advanceInflationRound()">Avan?ar para o Pr?ximo Ano ?</button>
+        <button class="btn btn-primary" onclick="advanceInflationRound()">Avançar para o Próximo Ano ➔</button>
       </div>
     </div>
   `;
@@ -900,7 +900,7 @@ function advanceInflationRound() {
   renderInflationSim();
 }
 
-/* ==================== 5. M?DULO IV: GEST?O EVA E MVA ==================== */
+/* ==================== 5. MÓDULO IV: GESTÃO EVA E MVA ==================== */
 let evaCurrentState = {
   investedCapital: 400000,
   nopat: 64000,
@@ -952,7 +952,7 @@ function renderEvaScreen() {
 
     <div class="budget-meter">
       <div>
-        <span style="font-size: 0.85rem; color: var(--text-secondary);">Or?amento Anual Dispon?vel:</span>
+        <span style="font-size: 0.85rem; color: var(--text-secondary);">Orçamento Anual Disponível:</span>
         <strong style="font-size: 1.15rem; color: ${budgetLeft >= 0 ? '#38bdf8' : '#ef4444'}; margin-left: 8px;">
           R$ ${budgetLeft.toLocaleString('pt-BR')}k / R$ 50.000k
         </strong>
@@ -960,7 +960,7 @@ function renderEvaScreen() {
       <span style="font-size: 0.82rem; color: var(--text-muted);">${selectedInitiativeIds.size} iniciativas selecionadas</span>
     </div>
 
-    <h4 style="font-size: 1.05rem; margin-bottom: 14px;">Selecione suas estrat?gias nos 3 Caminhos de Cria??o de Valor:</h4>
+    <h4 style="font-size: 1.05rem; margin-bottom: 14px;">Selecione suas estratégias nos 3 Caminhos de Criação de Valor:</h4>
 
     <div class="initiatives-grid">
       ${EVA_INITIATIVES.map(init => {
@@ -975,7 +975,7 @@ function renderEvaScreen() {
             <div style="margin-top: 14px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px; display: flex; justify-content: space-between; align-items: center;">
               <span style="font-size: 0.8rem; color: #cbd5e1;">Custo: <strong>R$ ${init.costBudget.toLocaleString('pt-BR')}k</strong></span>
               <span class="btn ${isSelected ? 'btn-success' : 'btn-secondary'}" style="padding: 4px 10px; font-size: 0.75rem;">
-                ${isSelected ? '? Selecionado' : '+ Selecionar'}
+                ${isSelected ? '✓ Selecionado' : '+ Selecionar'}
               </span>
             </div>
           </div>
@@ -1010,18 +1010,18 @@ function applyEvaYear() {
       const b = gameState.unlockBadge('arquiteto_mva');
       if (b) {
         sounds.levelUp();
-        showToast('Medalha Conquistada!', 'Arquiteto de Riqueza Real (+300 XP)', '??');
+        showToast('Medalha Conquistada!', 'Arquiteto de Riqueza Real (+300 XP)', '💎');
       }
     } else {
       sounds.cashRegister();
-      gameState.addXp(150, 'Ciclo de Gest?o EVA Executado');
+      gameState.addXp(150, 'Ciclo de Gestão EVA Executado');
     }
 
     renderEvaScreen();
-    showToast(`Ano ${nextYear.yearNumber} Executado!`, `Novo MVA Acumulado: R$ ${nextYear.cumulativeMva.toLocaleString('pt-BR')}k`, '??');
+    showToast(`Ano ${nextYear.yearNumber} Executado!`, `Novo MVA Acumulado: R$ ${nextYear.cumulativeMva.toLocaleString('pt-BR')}k`, '📊');
   } catch (err) {
     sounds.error();
-    showToast('Erro no Or?amento', err.message, '??');
+    showToast('Erro no Orçamento', err.message, '⚠️');
   }
 }
 
@@ -1044,17 +1044,17 @@ function renderSaelpaScreen() {
     <div class="saelpa-timeline">
       <div class="timeline-year-btn ${yr === 2003 ? 'active' : ''}" onclick="selectSaelpaYear(2003)">
         <div style="font-weight: 800; font-size: 1.1rem;">2003</div>
-        <small style="color: var(--text-secondary);">Linha de Base P?s-Privatiza??o</small>
+        <small style="color: var(--text-secondary);">Linha de Base Pós-Privatização</small>
       </div>
       <div class="timeline-year-btn ${yr === 2004 ? 'active' : ''}" onclick="selectSaelpaYear(2004)">
-        <div style="font-weight: 800; font-size: 1.1rem; color: #f87171;">2004 ??</div>
-        <small style="color: var(--text-secondary);">O Dilema & Mist?rio Educativo</small>
+        <div style="font-weight: 800; font-size: 1.1rem; color: #f87171;">2004 ⚠️</div>
+        <small style="color: var(--text-secondary);">O Dilema & Mistério Educativo</small>
       </div>
       <div class="timeline-year-btn ${yr === 2005 ? 'active' : ''} ${!saelpaQuizPassed ? 'locked' : ''}" onclick="${saelpaQuizPassed ? 'selectSaelpaYear(2005)' : 'alertBlocked2005()'}">
         <div style="font-weight: 800; font-size: 1.1rem; color: ${saelpaQuizPassed ? '#34d399' : '#64748b'};">
-          ${saelpaQuizPassed ? '2005 ??' : '2005 ??'}
+          ${saelpaQuizPassed ? '2005 🚀' : '2005 🔒'}
         </div>
-        <small style="color: var(--text-secondary);">${saelpaQuizPassed ? 'A Virada Hist?rica' : 'Bloqueado (Requer Quiz)'}</small>
+        <small style="color: var(--text-secondary);">${saelpaQuizPassed ? 'A Virada Histórica' : 'Bloqueado (Requer Quiz)'}</small>
       </div>
     </div>
 
@@ -1087,7 +1087,7 @@ function renderSaelpaScreen() {
 
       <div class="grid-3" style="margin-bottom: 20px;">
         <div class="metric-pill">
-          <span class="lbl">Lucro L?quido Cont?bil</span>
+          <span class="lbl">Lucro Líquido Contábil</span>
           <span class="val" style="color: #818cf8;">R$ ${d.accountingNetIncome.toLocaleString('pt-BR')}k</span>
         </div>
         <div class="metric-pill" style="border-color: ${d.eva >= 0 ? 'var(--color-success)' : 'var(--color-danger)'};">
@@ -1105,7 +1105,7 @@ function renderSaelpaScreen() {
       </div>
 
       <div style="background: rgba(0,0,0,0.25); border-radius: var(--radius-md); padding: 16px;">
-        <h4 style="font-size: 0.95rem; color: #e2e8f0; margin-bottom: 8px;">Comparativo: Lucro Cont?bil vs. EVA (2003?2005)</h4>
+        <h4 style="font-size: 0.95rem; color: #e2e8f0; margin-bottom: 8px;">Comparativo: Lucro Contábil vs. EVA (2003–2005)</h4>
         <canvas id="saelpaChartCanvas" style="width: 100%; height: 240px;"></canvas>
       </div>
     </div>
@@ -1113,17 +1113,17 @@ function renderSaelpaScreen() {
     ${yr === 2004 ? `
       <div class="dilemma-alert-card">
         <div style="display: flex; gap: 14px; align-items: flex-start;">
-          <div style="font-size: 36px;">??</div>
+          <div style="font-size: 36px;">🚨</div>
           <div>
             <h3 style="font-size: 1.3rem; font-weight: 800; color: #fca5a5; margin-bottom: 6px;">
-              Notifica??o Urgente do Conselho de Administra??o da SAELPA
+              Notificação Urgente do Conselho de Administração da SAELPA
             </h3>
             <p style="font-size: 0.95rem; color: #fff; line-height: 1.6; margin-bottom: 16px;">
-              <em>"Reportamos um lucro l?quido cont?bil positivo de R$ 20,8 milh?es, mas fomos formalmente acusados 
-              de destruir quase R$ 10,5 milh?es da riqueza dos acionistas e derrubar o MVA em R$ 59 milh?es!"</em>
+              <em>"Reportamos um lucro líquido contábil positivo de R$ 20,8 milhões, mas fomos formalmente acusados 
+              de destruir quase R$ 10,5 milhões da riqueza dos acionistas e derrubar o MVA em R$ 59 milhões!"</em>
             </p>
             <p style="font-size: 0.9rem; color: #fcd34d; margin-bottom: 14px; font-weight: 700;">
-              Desafio Obrigat?rio: Responda ao Quiz Diagn?stico para desvendar o paradoxo e desbloquear o ano de 2005:
+              Desafio Obrigatório: Responda ao Quiz Diagnóstico para desvendar o paradoxo e desbloquear o ano de 2005:
             </p>
 
             <div class="quiz-box">
@@ -1146,13 +1146,13 @@ function renderSaelpaScreen() {
       <div class="card" style="border-color: var(--color-success); background: rgba(16, 185, 129, 0.1); padding: 24px;">
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <div>
-            <h3 style="font-size: 1.35rem; font-weight: 800; color: #6ee7b7;">?? A Grande Virada Estrat?gica de 2005</h3>
+            <h3 style="font-size: 1.35rem; font-weight: 800; color: #6ee7b7;">🚀 A Grande Virada Estratégica de 2005</h3>
             <p style="font-size: 0.92rem; color: var(--text-secondary); margin-top: 6px; max-width: 650px;">
-              Com a aprova??o da expans?o para R$ 538,8M, ROI saltando para 20,9% e redu??o do WACC para 15,32%, 
-              o EVA bateu R$ 30,1 milh?es e o MVA atingiu R$ 196,3 milh?es!
+              Com a aprovação da expansão para R$ 538,8M, ROI saltando para 20,9% e redução do WACC para 15,32%, 
+              o EVA bateu R$ 30,1 milhões e o MVA atingiu R$ 196,3 milhões!
             </p>
           </div>
-          <button class="btn btn-success" onclick="completeSaelpaBossFight()">Coroar Miss?o SAELPA ??</button>
+          <button class="btn btn-success" onclick="completeSaelpaBossFight()">Coroar Missão SAELPA 👑</button>
         </div>
       </div>
     ` : ''}
@@ -1171,7 +1171,7 @@ function selectSaelpaYear(year) {
 
 function alertBlocked2005() {
   sounds.alert();
-  showToast('Acesso Bloqueado!', 'Voc? precisa desvendar o Mist?rio Educativo de 2004 no Quiz.', '??');
+  showToast('Acesso Bloqueado!', 'Você precisa desvendar o Mistério Educativo de 2004 no Quiz.', '🔒');
 }
 
 function answerSaelpaQuiz(selectedOptionId) {
@@ -1183,14 +1183,14 @@ function answerSaelpaQuiz(selectedOptionId) {
     sounds.success();
     btn.classList.add('correct');
     saelpaQuizPassed = true;
-    gameState.addXp(250, 'Mist?rio SAELPA 2004 Desvendado');
+    gameState.addXp(250, 'Mistério SAELPA 2004 Desvendado');
 
     fbArea.innerHTML = `
       <div style="background: rgba(16, 185, 129, 0.2); border: 1px solid var(--color-success); border-radius: var(--radius-md); padding: 16px;">
-        <h4 style="color: #6ee7b7; font-weight: 800; margin-bottom: 6px;">?? DIAGN?STICO PERFEITO! (+250 XP)</h4>
+        <h4 style="color: #6ee7b7; font-weight: 800; margin-bottom: 6px;">🎉 DIAGNÓSTICO PERFEITO! (+250 XP)</h4>
         <p style="font-size: 0.9rem; color: #fff; line-height: 1.5;">${opt.feedback}</p>
         <button class="btn btn-success" style="margin-top: 14px;" onclick="selectSaelpaYear(2005)">
-          Desbloquear Ano de 2005 (A Virada) ?
+          Desbloquear Ano de 2005 (A Virada) ➔
         </button>
       </div>
     `;
@@ -1199,7 +1199,7 @@ function answerSaelpaQuiz(selectedOptionId) {
     btn.classList.add('wrong');
     fbArea.innerHTML = `
       <div style="background: rgba(239, 68, 68, 0.2); border: 1px solid var(--color-danger); border-radius: var(--radius-md); padding: 14px;">
-        <h4 style="color: #fca5a5; font-weight: 700;">Diagn?stico Incorreto</h4>
+        <h4 style="color: #fca5a5; font-weight: 700;">Diagnóstico Incorreto</h4>
         <p style="font-size: 0.88rem; color: #fff; margin-top: 4px;">${opt.feedback}</p>
       </div>
     `;
@@ -1209,11 +1209,11 @@ function answerSaelpaQuiz(selectedOptionId) {
 function completeSaelpaBossFight() {
   const b = gameState.unlockBadge('heroi_saelpa');
   sounds.levelUp();
-  showToast('CHEFE DE FASE CONQUISTADO!', 'Medalha Her?i do Caso SAELPA desbloqueada (+300 XP)', '??');
+  showToast('CHEFE DE FASE CONQUISTADO!', 'Medalha Herói do Caso SAELPA desbloqueada (+300 XP)', '👑');
   switchTab('laudo');
 }
 
-/* ==================== 7. ARENA DE NEGOCIA??O DE M&A ==================== */
+/* ==================== 7. ARENA DE NEGOCIAÇÃO DE M&A ==================== */
 let negotiationState = null;
 
 function initNegotiationModule() {
@@ -1253,7 +1253,7 @@ function renderNegotiationArena() {
         </div>
 
         <div class="power-meter-container">
-          <span style="font-size: 0.8rem; color: var(--text-secondary);">Poder de Negocia??o:</span>
+          <span style="font-size: 0.8rem; color: var(--text-secondary);">Poder de Negociação:</span>
           <div class="power-bar-track">
             <div class="power-bar-fill" style="width: ${st.negotiationPower}%;"></div>
           </div>
@@ -1274,7 +1274,7 @@ function renderNegotiationArena() {
         ${st.history.map(msg => `
           <div class="chat-bubble ${msg.sender}">
             <div style="font-size: 0.75rem; color: ${msg.sender === 'user' ? 'rgba(255,255,255,0.7)' : 'var(--color-primary)'}; font-weight: 700; margin-bottom: 4px;">
-              ${msg.sender === 'user' ? 'Voc? (Analista)' : st.personaName}
+              ${msg.sender === 'user' ? 'Você (Analista)' : st.personaName}
             </div>
             <div>${msg.text}</div>
             ${msg.offer ? `<div style="font-size: 0.75rem; color: #38bdf8; margin-top: 6px; font-weight: 600;">[Oferta calibrada: R$ ${msg.offer.toLocaleString('pt-BR')}]</div>` : ''}
@@ -1295,16 +1295,16 @@ function renderNegotiationArena() {
         ` : `
           <div style="text-align: center; padding: 12px;">
             <h4 style="font-size: 1.15rem; color: #6ee7b7; font-weight: 800; margin-bottom: 4px;">
-              ${st.dealOutcome ? st.dealOutcome.title : 'Negocia??o Finalizada'}
+              ${st.dealOutcome ? st.dealOutcome.title : 'Negociação Finalizada'}
             </h4>
             <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px;">
               ${st.dealOutcome ? st.dealOutcome.description : ''}
             </p>
             <div style="display: flex; justify-content: center; gap: 12px;">
               <button class="btn btn-secondary" onclick="startNegotiation('${st.personaId === 'albrecht' ? 'salles' : 'albrecht'}')">
-                Negociar com ${st.personaId === 'albrecht' ? 'Beatriz Salles' : 'Dr. Albrecht'} ?
+                Negociar com ${st.personaId === 'albrecht' ? 'Beatriz Salles' : 'Dr. Albrecht'} ➔
               </button>
-              <button class="btn btn-primary" onclick="switchTab('laudo')">Emitir Laudo Formal ??</button>
+              <button class="btn btn-primary" onclick="switchTab('laudo')">Emitir Laudo Formal 📜</button>
             </div>
           </div>
         `}
@@ -1324,10 +1324,10 @@ function chooseNegotiationOption(optionIndex) {
     if (negotiationState.negotiationPower >= 75) {
       sounds.levelUp();
       const b = gameState.unlockBadge('tubarao_ma');
-      if (b) showToast('Medalha Conquistada!', 'Tubar?o da Mesa de M&A (+300 XP)', '??');
+      if (b) showToast('Medalha Conquistada!', 'Tubarão da Mesa de M&A (+300 XP)', '🦈');
     } else {
       sounds.cashRegister();
-      gameState.addXp(150, 'Acordo de M&A Conclu?do');
+      gameState.addXp(150, 'Acordo de M&A Concluído');
     }
   }
 
@@ -1383,7 +1383,7 @@ function renderModalBadges() {
         <h4 style="font-size: 0.95rem; font-weight: 700; color: ${b.unlocked ? '#fff' : 'var(--text-muted)'};">${b.title}</h4>
         <p style="font-size: 0.78rem; color: var(--text-secondary); margin: 4px 0 8px 0;">${b.description}</p>
         <span style="font-size: 0.72rem; font-weight: 700; color: ${b.unlocked ? '#34d399' : '#64748b'};">
-          ${b.unlocked ? '? Desbloqueada' : '?? Bloqueada'}
+          ${b.unlocked ? '✓ Desbloqueada' : '🔒 Bloqueada'}
         </span>
       </div>
     `;

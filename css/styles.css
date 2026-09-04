@@ -218,7 +218,7 @@ body {
   transform: translateY(-1px);
 }
 
-/* ==================== NAVEGA??O DE ABAS ==================== */
+/* ==================== NAVEGAÇÃO DE ABAS ==================== */
 .main-nav-tabs {
   display: flex;
   gap: 8px;
