@@ -1,0 +1,26 @@
+﻿{
+  "name": "valuationquest",
+  "version": "1.0.0",
+  "description": "ValuationQuest: A Jornada do Gestor - Plataforma Gamificada de Valuation e Gestão de Valor",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node tests/engine.test.js"
+  },
+  "keywords": [
+    "valuation",
+    "dcf",
+    "fcd",
+    "wacc",
+    "capm",
+    "multiples",
+    "eva",
+    "mva",
+    "saelpa",
+    "financas-corporativas",
+    "gamificacao",
+    "educacao-financeira"
+  ],
+  "author": "Equipe ValuationQuest & Gemini",
+  "license": "MIT"
+}

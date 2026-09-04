@@ -1,0 +1,231 @@
+/* ValuationQuest - report.css
+   Estilos dedicados para Laudo de Avalia??o T?cnico e Impress?o em PDF */
+
+.formal-laudo-document {
+  background: #ffffff;
+  color: #0f172a;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: 'Inter', -apple-system, sans-serif;
+  line-height: 1.6;
+}
+
+.laudo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.laudo-branding {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.laudo-logo-badge {
+  width: 50px;
+  height: 50px;
+  background: #0284c7;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.laudo-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.5px;
+}
+
+.laudo-subtitle {
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.laudo-meta {
+  font-size: 0.82rem;
+  color: #475569;
+  text-align: right;
+}
+
+.laudo-divider {
+  border: 0;
+  height: 2px;
+  background: #cbd5e1;
+  margin: 20px 0;
+}
+
+.laudo-section {
+  margin-bottom: 32px;
+}
+
+.section-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0369a1;
+  border-bottom: 2px solid #e0f2fe;
+  padding-bottom: 6px;
+  margin-bottom: 14px;
+}
+
+.laudo-paragraph {
+  font-size: 0.92rem;
+  color: #334155;
+  margin-bottom: 16px;
+  text-align: justify;
+}
+
+.kpi-grid-laudo {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin: 18px 0;
+}
+
+.kpi-card-laudo {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-card-laudo .kpi-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.kpi-card-laudo .kpi-value {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin: 4px 0;
+}
+
+.kpi-card-laudo .kpi-sub {
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+.text-primary { color: #0284c7; }
+.text-success { color: #059669; }
+.text-danger { color: #dc2626; }
+.text-purple { color: #7c3aed; }
+
+.price-range-box {
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-top: 14px;
+  font-size: 0.95rem;
+}
+
+.range-highlight {
+  font-weight: 800;
+  color: #15803d;
+  font-size: 1.1rem;
+}
+
+.laudo-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin: 14px 0;
+}
+
+.laudo-table th, .laudo-table td {
+  border: 1px solid #cbd5e1;
+  padding: 8px 10px;
+}
+
+.laudo-table th {
+  background: #f1f5f9;
+  color: #0f172a;
+  font-weight: 700;
+  text-align: left;
+}
+
+.highlight-row {
+  background: #e0f2fe;
+  font-weight: 700;
+}
+
+.terminal-formula-box {
+  background: #f8fafc;
+  border-left: 4px solid #0284c7;
+  padding: 14px 18px;
+  font-family: monospace;
+  font-size: 0.9rem;
+  margin: 14px 0;
+}
+
+.laudo-certification {
+  margin-top: 40px;
+  padding: 24px;
+  background: #fafaf9;
+  border: 2px dashed #cbd5e1;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.cert-badge {
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #b45309;
+  margin-bottom: 8px;
+}
+
+.signature-row {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 36px;
+}
+
+.sig-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.sig-line {
+  width: 220px;
+  height: 1px;
+  background: #475569;
+  margin-bottom: 8px;
+}
+
+.laudo-print-controls {
+  margin-top: 24px;
+  text-align: center;
+}
+
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .game-hud, .main-nav-tabs, .no-print {
+    display: none !important;
+  }
+  .main-content {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+  .formal-laudo-document {
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+}
