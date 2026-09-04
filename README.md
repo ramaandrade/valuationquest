@@ -2,6 +2,8 @@
 
 > **Status do Projeto:** Versão 1.0 (Publicação Final — Conforme PRD Setembro de 2026)  
 > **Público-Alvo:** Estudantes iniciantes de Finanças, Economia e Administração; Analistas de M&A e Professores  
+> **🌐 Aplicação Online (GitHub Pages):** [https://ramaandrade.github.io/valuationquest/](https://ramaandrade.github.io/valuationquest/)  
+> **📁 Repositório no GitHub:** [https://github.com/ramaandrade/valuationquest](https://github.com/ramaandrade/valuationquest)  
 > **Origem Teórica:** Grounded no conteúdo do Tema 7 (FCD, Múltiplos, EVA, MVA e Estudo SAELPA)  
 > **Plataforma:** Aplicação Web SPA responsiva, interativa e gamificada (Zero dependências externas de build)
 
